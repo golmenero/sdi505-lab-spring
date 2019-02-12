@@ -55,5 +55,4 @@ public class MarksControllers {
 		marksService.addMark(mark);
 		return "redirect:/mark/details/" + id;
 	}
-
 }
