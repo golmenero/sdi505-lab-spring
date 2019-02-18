@@ -13,20 +13,20 @@
 			<ul class="nav navbar-nav">
 				<li><a href="/">Home</a></li>
 				<li id="marks-menu" class="dropdown"><a class="dropdown-toggle"
-					data-toggle="dropdown" href="#"> Gestión de notas <span
+					data-toggle="dropdown" href="#" th:text="#{navegation.management.notes}"> Gestion de notas <span
 						class="caret"></span>
 				</a>
 					<ul class="dropdown-menu">
-						<li><a href="/mark/add">Agregar Nota</a></li>
-						<li><a href="/mark/list">Ver Notas</a></li>
+						<li><a href="/mark/add" th:text="#{navegation.management.notes.add}">Agregar Nota</a></li>
+						<li><a href="/mark/list" th:text="#{navegation.management.notes.list}">Ver Notas</a></li>
 					</ul></li>
 				<li id="users-menu" class="dropdown"><a class="dropdown-toggle"
-					data-toggle="dropdown" href="#"> Gestion de Usuarios <span
+					data-toggle="dropdown" href="#" th:text="#{navegation.management.users}"> Gestion de Usuarios <span
 						class="caret"></span>
 				</a>
 					<ul class="dropdown-menu">
-						<li><a href="/user/add">Agregar usuario</a></li>
-						<li><a href="/user/list">Ver Usuarios</a></li>
+						<li><a href="/user/add" th:text="#{navegation.management.users.add}">Agregar usuario</a></li>
+						<li><a href="/user/list" th:text="#{navegation.management.users.list}">Ver Usuarios</a></li>
 					</ul></li>
 			</ul>
 			<ul class="nav navbar-nav navbar-right">

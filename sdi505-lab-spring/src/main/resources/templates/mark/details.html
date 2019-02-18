@@ -7,18 +7,18 @@
 <nav th:replace="fragments/nav"/>
 
 <div class="container">
-	<h2>Detalles de la nota</h2>
+	<h2 th:text="#{management.notes.details}">Detalles de la nota</h2>
 	<div class="panel panel-default">
 		<div class="panel-heading">DNI</div>
 		<div class="panel-body" th:text="${mark.user.dni}">28276</div>
 	</div>
 	<div class="panel panel-default">
-		<div class="panel-heading">Descripcion</div>
+		<div class="panel-heading" th:text="#{management.notes.details.description}">Descripcion</div>
 		<div class="panel-body" th:text="${mark.description}">
 			Ejercicio 1</div>
 	</div>
 	<div class="panel panel-default">
-		<div class="panel-heading">Puntuacion</div>
+		<div class="panel-heading" th:text="#{management.notes.details.mark}">Puntuacion</div>
 		<div class="panel-body" th:text="${mark.score}">100</div>
 	</div>
 </div>

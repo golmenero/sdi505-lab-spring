@@ -8,27 +8,27 @@
 	<nav th:replace="fragments/nav"/>
 
 	<div class="container">
-		<h2>Editar Nota</h2>
+		<h2 th:text="#{management.notes.modify}">Editar Nota</h2>
 		<form class="form-horizontal" method="post"
 			th:action="${'/mark/edit/' + mark.id}">
 			<div class="form-group">
-				<label class="control-label col-sm-2" for="description">Descripcion:</label>
+				<label class="control-label col-sm-2" for="description" th:text="#{management.notes.modify.description}">Descripcion:</label>
 				<div class="col-sm-10">
 					<input th:value="${mark.description}" type="text"
 						class="form-control" name="description"
-						placeholder="Ejemplo Ejercicio 1" required="true" />
+						placeholder="Ejemplo Ejercicio 1" required="true" th:placeholder="#{management.notesmodify.description.hint}"/>
 				</div>
 			</div>
 			<div class="form-group">
-				<label class="control-label col-sm-2" for="pwd">Puntuacion:</label>
+				<label class="control-label col-sm-2" for="pwd" th:text="#{management.notes.modify.mark}">Puntuacion:</label>
 				<div class="col-sm-10">
 					<input th:value="${mark.score}" type="number" class="form-control"
-						name="score" placeholder="Entre 0 y 10" required="true" />
+						name="score" placeholder="Entre 0 y 10" required="true" th:placeholder="#{management.notes.mark.hint}"/>
 				</div>
 			</div>
 			<div class="form-group">
 				<div class="col-sm-offset-2 col-sm-10">
-					<button type="submit" class="btn btn-primary">Modificar</button>
+					<button type="submit" class="btn btn-primary" th:text="#{management.notes.modify.send}">Modificar</button>
 				</div>
 			</div>
 		</form>
