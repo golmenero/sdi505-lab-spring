@@ -1,5 +1,7 @@
 package com.uniovi.controllers;
 
+import java.security.Principal;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,24 +10,27 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import com.uniovi.entities.Mark;
+import com.uniovi.entities.User;
 import com.uniovi.services.MarkService;
 import com.uniovi.services.UsersService;
 
 @Controller
 public class MarksControllers {
-	
+
 	@Autowired
 	private HttpSession httpSession;
-	
-	@Autowired //Inyectar el servicio
+
+	@Autowired // Inyectar el servicio
 	private MarkService marksService;
-	
+
 	@Autowired
 	private UsersService usersService;
 
 	@RequestMapping("/mark/list")
-	public String getList(Model model) {
-		model.addAttribute("markList", marksService.getMarks());
+	public String getList(Model model, Principal principal) {
+		String dni = principal.getName(); // DNI es el name de la autenticación
+		User user = usersService.getUserByDni(dni);
+		model.addAttribute("markList", marksService.getMarksForUser(user));
 		return "mark/list";
 	}
 
@@ -80,6 +85,14 @@ public class MarksControllers {
 	public String setResendFalse(Model model, @PathVariable Long id) {
 		marksService.setMarkResend(false, id);
 		return "redirect:/mark/list";
+	}
+
+	@RequestMapping("/mark/list/update")
+	public String updateList(Model model, Principal principal) {
+		String dni = principal.getName(); // DNI es el name de la autenticación
+		User user = usersService.getUserByDni(dni);
+		model.addAttribute("markList", marksService.getMarksForUser(user));
+		return "mark/list :: tableMarks";
 	}
 
 }
