@@ -1,16 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head th:replace="fragments/head"/>
+<head th:replace="fragments/head" />
 
 <body>
-<!-- Barra de Navegación superior -->
+	<!-- Barra de Navegación superior -->
 	<nav th:replace="fragments/nav" />
 	<div class="container">
 		<h2 th:text="#{management.notes.list}">Notas</h2>
-		<p th:text="#{management.notes.list.description}">Las notas que actualmente figuran en el sistema son las
-			siguientes:</p>
-		<button type="button" id="updateButton" class="btn btn-default" th:text="#{management.notes.list.update}">Actualizar</button>
+		<p th:text="#{management.notes.list.description}">Las notas que
+			actualmente figuran en el sistema son las siguientes:</p>
+		<button type="button" id="updateButton" class="btn btn-default"
+			th:text="#{management.notes.list.update}">Actualizar</button>
 		<script>
 			$("#updateButton").click(function() {
 				$("#tableMarks").load('/mark/list/update');
@@ -34,14 +35,65 @@
 						<td th:text="${mark.id}">1</td>
 						<td th:text="${mark.description}">Ejercicio 1</td>
 						<td th:text="${mark.score}">10</td>
-						<td><a th:href="${'/mark/details/' + mark.id}" th:text="#{management.notes.list.details}">detalles</a></td>
-						<td><a th:href="${'/mark/edit/' + mark.id}" th:text="#{management.notes.list.modify}">modificar</a></td>
-						<td><a th:href="${'/mark/delete/' + mark.id}" th:text="#{management.notes.list.delete}">eliminar</a></td>
+						<td><a th:href="${'/mark/details/' + mark.id}"
+							th:text="#{management.notes.list.details}">detalles</a></td>
+						<td><a sec:authorize="hasRole('ROLE_PROFESSOR')"
+							th:href="${'/mark/edit/' + mark.id}"
+							th:text="#{management.notes.list.modify}">modificar</a>
+							<div sec:authorize="hasRole('ROLE_STUDENT')">
+								<div th:if="${mark.resend}">
+									<button type="button" th:id="${'resendButton' + mark.id}"
+										class="btn btn-info">Reenviar</button>
+									<script th:inline="javascript">
+										/*<![CDATA[*/
+										$("#resendButton[[${mark.id}]]")
+												.click(
+														function() {
+															$
+																	.get(
+																			"/mark/[[${mark.id}]]/noresend",
+																			function(
+																					data) {
+																				$(
+																						"#tableMarks")
+																						.load(
+																								'/mark/list/update');
+																			});
+														});
+										/*]]>*/
+									</script>
+								</div>
+								<div th:unless="${mark.resend}">
+									<button type="button" th:id="${'noresendButton' + mark.id}"
+										class="btn btn-default">No reenviar</button>
+									<script th:inline="javascript">
+										/*<![CDATA[*/
+										$("#noresendButton[[${mark.id}]]")
+												.click(
+														function() {
+															$
+																	.get(
+																			"/mark/[[${mark.id}]]/resend",
+																			function(
+																					data) {
+																				$(
+																						"#tableMarks")
+																						.load(
+																								'/mark/list/update');
+																			});
+														});
+										/*]]>*/
+									</script>
+								</div>
+							</div></td>
+						<td><a sec:authorize="hasRole('ROLE_PROFESSOR')"
+							th:href="${'/mark/delete/' + mark.id}"
+							th:text="#{management.notes.list.delete}">eliminar</a></td>
 					</tr>
 				</tbody>
 			</table>
 		</div>
 	</div>
-	<footer th:replace="fragments/footer"/>
+	<footer th:replace="fragments/footer" />
 </body>
 </html>

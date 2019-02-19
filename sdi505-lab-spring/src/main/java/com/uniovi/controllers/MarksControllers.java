@@ -8,7 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import com.uniovi.entities.Mark;
-import com.uniovi.services.MarksService;
+import com.uniovi.services.MarkService;
 import com.uniovi.services.UsersService;
 
 @Controller
@@ -18,7 +18,7 @@ public class MarksControllers {
 	private HttpSession httpSession;
 	
 	@Autowired //Inyectar el servicio
-	private MarksService marksService;
+	private MarkService marksService;
 	
 	@Autowired
 	private UsersService usersService;
@@ -68,6 +68,18 @@ public class MarksControllers {
 		original.setDescription(mark.getDescription());
 		marksService.addMark(original);
 		return "redirect:/mark/details/" + id;
+	}
+
+	@RequestMapping(value = "/mark/{id}/resend", method = RequestMethod.GET)
+	public String setResendTrue(Model model, @PathVariable Long id) {
+		marksService.setMarkResend(true, id);
+		return "redirect:/mark/list";
+	}
+
+	@RequestMapping(value = "/mark/{id}/noresend", method = RequestMethod.GET)
+	public String setResendFalse(Model model, @PathVariable Long id) {
+		marksService.setMarkResend(false, id);
+		return "redirect:/mark/list";
 	}
 
 }

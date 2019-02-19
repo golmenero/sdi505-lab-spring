@@ -1,7 +1,7 @@
 package com.uniovi.services;
 
 import com.uniovi.entities.User;
-import com.uniovi.repositories.UsersRepository;
+import com.uniovi.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -14,7 +14,7 @@ import java.util.*;
 @Service("userDetailsService")
 public class UserDetailsServiceImpl implements UserDetailsService {
 	@Autowired
-	private UsersRepository usersRepository;
+	private UserRepository usersRepository;
 
 	@Override
 	public UserDetails loadUserByUsername(String dni) throws UsernameNotFoundException {

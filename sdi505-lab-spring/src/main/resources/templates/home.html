@@ -7,8 +7,9 @@
 		<h2 th:text="#{welcome.message}"></h2>
 		<h3 th:text="#{home.message}">Esta es una zona privada la web</h3>
 		<p>
-			Usuario Autenticado como : <b th:inline="text">
-				[[${#httpServletRequest.remoteUser}]] </b>
+			Usuario Autenticado como : <span
+				sec:authentication="principal.username" th:inline="text">
+				</span>
 		</p>
 		<p th:text="#{home.message2}">Notas del usuario</p>
 		<div class="table-responsive">
@@ -28,9 +29,12 @@
 						<td th:text="${mark.id}">1</td>
 						<td th:text="${mark.description}">Ejercicio 1</td>
 						<td th:text="${mark.score}">10</td>
-						<td><a th:href="${'/mark/details/' + mark.id}" th:text="#{home.details}">detalles</a></td>
-						<td><a th:href="${'/mark/edit/' + mark.id}" th:text="#{home.modify}">modificar</a></td>
-						<td><a th:href="${'/mark/delete/' + mark.id}" th:text="#{home.delete}">eliminar</a></td>
+						<td><a th:href="${'/mark/details/' + mark.id}"
+							th:text="#{home.details}">detalles</a></td>
+						<td><a th:href="${'/mark/edit/' + mark.id}"
+							th:text="#{home.modify}">modificar</a></td>
+						<td><a th:href="${'/mark/delete/' + mark.id}"
+							th:text="#{home.delete}">eliminar</a></td>
 					</tr>
 				</tbody>
 			</table>

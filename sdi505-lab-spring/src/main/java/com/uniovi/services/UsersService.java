@@ -5,12 +5,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import com.uniovi.entities.User;
-import com.uniovi.repositories.UsersRepository;
+import com.uniovi.repositories.UserRepository;
 
 @Service
 public class UsersService {
 	@Autowired
-	private UsersRepository usersRepository;
+	private UserRepository usersRepository;
 
 	@Autowired
 	private BCryptPasswordEncoder bCryptPasswordEncoder;
@@ -26,11 +26,7 @@ public class UsersService {
 	}
 
 	public void addUser(User user) {
-		String f= user.getPassword();
-		if(f!=null)
-			user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
-		else
-			user.setPassword("");
+		user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
 		usersRepository.save(user);
 	}
 
