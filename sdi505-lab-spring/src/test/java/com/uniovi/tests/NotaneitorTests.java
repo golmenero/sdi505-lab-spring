@@ -62,11 +62,37 @@ public class NotaneitorTests {
 	@Test
 	public void test() {
 		/*
-		//Cambiamos el idioma a Inglés
-		PO_HomeView.changeIdiom(driver, "btnEnglish");
-		//Esperamos porque aparezca que aparezca el texto de bienvenida en inglés
-		SeleniumUtils.EsperaCargaPagina(driver, "text", p.getString("welcome.message",
-		PO_Properties.ENGLISH), getTimeout());
-		*/
+		 //Cambiamos el idioma a Inglés PO_HomeView.changeIdiom(driver, "btnEnglish");
+		 //Esperamos porque aparezca que aparezca el texto de bienvenida en inglés
+		 SeleniumUtils.EsperaCargaPagina(driver, "text", p.getString("welcome.message", PO_Properties.ENGLISH), getTimeout());
+		*/ 
+	}
+
+	// PR01. Acceder a la página principal /
+	@Test
+	public void PR01() {
+		PO_HomeView.checkWelcome(driver, PO_Properties.getSPANISH());
+	}
+
+	// PR02. OPción de navegación. Pinchar en el enlace Registro en la página home
+	@Test
+	public void PR02() {
+		PO_HomeView.clickOption(driver, "signup", "class", "btn btn-primary");
+	}
+
+	// PR03. OPción de navegación. Pinchar en el enlace Identificate en la página
+	// home
+	@Test
+	public void PR03() {
+		PO_HomeView.clickOption(driver, "login", "class", "btn btn-primary");
+	}
+
+	// PR04. OPción de navegación. Cambio de idioma de Español a Ingles y vuelta a
+	// Español
+	@Test
+	public void PR04() {
+		PO_HomeView.checkChangeIdiom(driver, "btnSpanish", "btnEnglish", PO_Properties.getSPANISH(),
+				PO_Properties.getENGLISH());
+		// SeleniumUtils.esperarSegundos(driver, 2);
 	}
 }
