@@ -1,4 +1,4 @@
-package com.uniovi.tests.utils;
+package com.uniovi.tests.util;
 
 
 import java.util.List;

@@ -8,6 +8,10 @@ import org.junit.runners.MethodSorters;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
+import com.uniovi.tests.pageobjects.PO_HomeView;
+import com.uniovi.tests.pageobjects.PO_Properties;
+import com.uniovi.tests.util.SeleniumUtils;
+
 //Ordenamos las pruebas por el nombre del método
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class NotaneitorTests {
@@ -57,5 +61,12 @@ public class NotaneitorTests {
 
 	@Test
 	public void test() {
+		/*
+		//Cambiamos el idioma a Inglés
+		PO_HomeView.changeIdiom(driver, "btnEnglish");
+		//Esperamos porque aparezca que aparezca el texto de bienvenida en inglés
+		SeleniumUtils.EsperaCargaPagina(driver, "text", p.getString("welcome.message",
+		PO_Properties.ENGLISH), getTimeout());
+		*/
 	}
 }
