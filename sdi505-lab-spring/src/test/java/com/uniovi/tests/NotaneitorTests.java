@@ -123,4 +123,58 @@ public class NotaneitorTests {
 		// Rellenamos el formulario.
 		PO_RegisterView.fillForm(driver, "99999990B", "Josefo", "Per", "77777", "77777");
 	}
+
+	// PRN. Loguearse con exito desde el ROl de Usuario, 99999990D, 123456
+	@Test
+	public void PR07() {
+		// Vamos al formulario de logueo.
+		PO_HomeView.clickOption(driver, "login", "class", "btn btn-primary");
+		// Rellenamos el formulario
+		PO_LoginView.fillForm(driver, "99999990A", "123456");
+		// COmprobamos que entramos en la pagina privada de Alumno
+		PO_View.checkElement(driver, "text", "Notas del usuario");
+	}
+	
+	// Identificación válida con usuario de ROL profesor ( 99999993D/123456).
+		@Test
+		public void PR08() {
+			// Vamos al formulario de logueo.
+			PO_HomeView.clickOption(driver, "login", "class", "btn btn-primary");
+			// Rellenamos el formulario
+			PO_LoginView.fillForm(driver, "99999993D","123456");
+			// COmprobamos que entramos en la pagina privada de Profesor
+			PO_View.checkElement(driver, "text", "Notas del usuario");
+		}
+		
+		// Identificación válida con usuario de ROL Administrador (99999988F/123456).
+		@Test
+		public void PR09() {
+			// Vamos al formulario de logueo.
+			PO_HomeView.clickOption(driver, "login", "class", "btn btn-primary");
+			// Rellenamos el formulario
+			PO_LoginView.fillForm(driver, "99999988F","123456");
+			// COmprobamos que entramos en la pagina privada de Administrador
+			PO_View.checkElement(driver, "text", "Notas del usuario");
+		}
+		
+		// Identificación inválida con usuario de ROL alumno ( 99999990A/123456).
+		@Test
+		public void PR10() {
+			// Vamos al formulario de logueo.
+			PO_HomeView.clickOption(driver, "login", "class", "btn btn-primary");
+			// Rellenamos el formulario
+			PO_LoginView.fillForm(driver, "99999990A","123456");
+			// COmprobamos que entramos en la pagina privada de Alumno
+			PO_View.checkElement(driver, "text", "Notas del usuario");
+		}
+		
+		// Identificación válida y desconexión con usuario de ROL usuario (99999990A/123456)..
+		@Test
+		public void PR11() {
+			// Vamos al formulario de logueo.
+			PO_HomeView.clickOption(driver, "login", "class", "btn btn-primary");
+			// Rellenamos el formulario
+			PO_LoginView.fillForm(driver, "99999990A","123456");
+			PO_View.checkElement(driver, "text", "Notas del usuario");
+		}
 }
